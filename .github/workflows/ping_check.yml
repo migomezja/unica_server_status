@@ -2,8 +2,8 @@ name: Check Server Status
 
 on:
   schedule:
-    - cron: "*/5 * * * *" #  every 5 minutes (UTC)
-  workflow_dispatch: # allow manual runs too
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
 
 jobs:
   check-server:
@@ -22,7 +22,8 @@ jobs:
         run: |
           pip install gspread oauth2client
 
+      - name: Create credentials file from secret
+        run: echo "${{ secrets.GOOGLE_CREDS_JSON }}" > credentials.json
+
       - name: Run script
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ./credenciales.json
         run: python check-server.py
