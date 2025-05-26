@@ -33,7 +33,11 @@ def log_to_spreadsheet(state):
     client = gspread.authorize(creds)
 
     sheet = client.open(SPREADSHEET_NAME).worksheet(WORKSHEET_NAME)
-    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    # Obtener hora actual en UTC-5 (restando 5 horas a UTC)
+    timestamp = (datetime.datetime.utcnow() - datetime.timedelta(hours=5)).strftime("%Y-%m-%d %H:%M:%S")
+    
+    # Agregar fila al sheet
     sheet.append_row([timestamp, SERVER, state])
 
 if __name__ == "__main__":
