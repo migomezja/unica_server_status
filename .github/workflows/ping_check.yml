@@ -25,4 +25,4 @@ jobs:
       - name: Run script
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ./credenciales.json
-        run: python check_server.py
+        run: python check-server.py
