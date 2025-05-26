@@ -24,7 +24,7 @@ jobs:
 
       - name: Create credentials file from secret
         run: |
-          echo "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}" | base64 --decode > credentials.json
+          echo "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}" > credentials.json
 
       - name: Run script
         run: python check-server.py
