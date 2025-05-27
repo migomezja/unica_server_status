@@ -8,7 +8,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 SERVER = "168.176.123.121"
 
 # Define el número de pings que se realizarán
-PING_COUNT = 5
+PING_COUNT = 2
 
 # Configura las credenciales de Google Sheets
 SPREADSHEET_NAME = "historico"
@@ -20,9 +20,9 @@ def ping_server(server, count=4):
     command = f"ping {param} {count} {server}"
     response = os.popen(command).read()
     
-    if "0% loss" in response or "0% perdidos" in response:
+    if "(0% loss)" in response or "0% perdidos" in response:
         return "Funcionando"
-    elif "100% loss" in response or "100% perdidos" in response:
+    elif "(100% loss)" in response or "100% perdidos" in response:
         return "Caído"
     else:
         return "Intermitente"
